@@ -1,0 +1,26 @@
+.jumbotron
+  h1 Welcome!
+  p Authenticate via Slack to get started.
+-@books.each do |b|
+	.col-md-3.col-sm-6.col-xs-6.clearboth
+	  .thumbnail
+	    a href="#{book_path(b)}"
+	      -if b.cover?
+	      	img alt="" src="#{b.cover_url(:thumb)}" /
+	      -else
+	      	img alt="" src="http://placehold.it/150x200" /
+	    .caption
+	      h5 =b.title
+	      dl
+	      	-if b.isbn?
+		        dt ISBN:
+		        dd = b.isbn
+	        dt Author(s):
+	        dd = b.authors.first.name
+	        -if b.published_date?
+		        dt Published date:
+		        dd = b.published_date
+		    -if b.lang?
+		        dt Language:
+		        dd = b.lang
+	      a.btn.btn-primary.btn-primary__mod href="#{book_path(b)}"  Learn more

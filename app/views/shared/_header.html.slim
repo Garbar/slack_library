@@ -1,0 +1,15 @@
+nav.navbar.navbar-inverse
+  .container
+    .navbar-header
+      = link_to 'Slack Library', root_path, class: 'navbar-brand'
+    #navbar
+      - if current_user
+        ul.nav.navbar-nav.pull-right
+          li = current_user.name
+          - if current_user.try(:admin?)
+            li = link_to 'Users', books_path
+          li = link_to 'Log Out', logout_path, method: :delete
+      -else
+        ul.nav.navbar-nav
+          li
+            = link_to 'Slack', '/auth/slack'
