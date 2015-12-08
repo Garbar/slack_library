@@ -2,12 +2,13 @@
   .container
     .row
       #blog-post.col-md-12
-      	a.btn href="#{edit_book_path(@book)}"
-          i.icon-edit
-          strong Edit
-        = link_to book_path(@book), :class => 'btn', method: :delete, data: { confirm: 'Are you sure?' }  do
-          i.icon-trash
-          strong Delete
+      	- if current_user
+	      	a.btn href="#{edit_book_path(@book)}"
+	          i.icon-edit
+	          strong Edit
+	        = link_to book_path(@book), :class => 'btn', method: :delete, data: { confirm: 'Are you sure?' }  do
+	          i.icon-trash
+	          strong Delete
         .panel.panel-info
           .panel-heading
             h3.panel-title = @book.title

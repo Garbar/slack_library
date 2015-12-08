@@ -1,12 +1,13 @@
 .jumbotron
     h3 Welcome!
-    .panel.panel-default.header
-      .panel-body
-            = simple_form_for(@isbn, url: get_book_books_path, method: :post,  wrapper: :inline_form, html: { class: 'form-inline' }) do |f|
-              .form-group
-                = f.input :isbn, label: false, placeholder: 'ISBN'
-              .form-group
-              = f.button :submit, "Add book", class: "btn btn-primary"
+    - if current_user
+	    .panel.panel-default.header
+	      .panel-body
+	            = simple_form_for(@isbn, url: get_book_books_path, method: :post,  wrapper: :inline_form, html: { class: 'form-inline' }) do |f|
+	              .form-group
+	                = f.input :isbn, label: false, placeholder: 'ISBN'
+	              .form-group
+	              = f.button :submit, "Add book", class: "btn btn-primary"
 
 
 .container
