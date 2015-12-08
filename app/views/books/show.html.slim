@@ -8,9 +8,6 @@
         = link_to book_path(@book), :class => 'btn', method: :delete, data: { confirm: 'Are you sure?' }  do
           i.icon-trash
           strong Delete
-        a.btn href="#{}"
-          i.icon-align-justify
-          strong Add chapter
         .panel.panel-info
           .panel-heading
             h3.panel-title = @book.title
