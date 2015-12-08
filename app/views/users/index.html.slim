@@ -1,0 +1,17 @@
+.container
+  .row
+    h3 Users
+    - if current_user.try(:admin?)
+      .column
+        table.table
+          thead
+            tr
+              th Name
+              th Role
+              th Created
+          tbody
+            - @users.each do |b|
+              tr
+                td = b.name
+                td = b.role
+                td = b.created_at
