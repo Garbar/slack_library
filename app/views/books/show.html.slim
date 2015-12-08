@@ -1,2 +1,44 @@
-h1 Books#show
-p Find me in app/views/books/show.html.slim
+#content
+  .container
+    .row
+      #blog-post.col-md-12
+      	a.btn href="#{edit_book_path(@book)}"
+          i.icon-edit
+          strong Edit
+        = link_to book_path(@book), :class => 'btn', method: :delete, data: { confirm: 'Are you sure?' }  do
+          i.icon-trash
+          strong Delete
+        a.btn href="#{}"
+          i.icon-align-justify
+          strong Add chapter
+        .panel.panel-info
+          .panel-heading
+            h3.panel-title = @book.title
+          .panel-body
+            .row
+              .col-md-4
+                .thumbnail
+                  -if @book.cover?
+                    img alt="" src="#{@book.cover_url(:thumb)}" /
+                  -else
+                    img alt="" src="http://placehold.it/250x200" /
+              .col-md-8
+                dl.dl-horizontal
+                  dt Authors
+                  dd #{scope_authors(@book.authors)}
+                  - if @book.isbn
+                    dt ISBN
+                    dd = @book.isbn
+                  - if @book.lang
+                    dt Language
+                    dd = @book.lang
+                  - if @book.published_date
+                    dt Last update
+                    dd = @book.published_date
+            - if @book.description
+            	p.lead = @book.description.html_safe
+        - if current_user
+	        = render 'add_file'
+	        - if @book.book_files.size >1
+	          = render 'files'
+        / = debug(@book.book_files.size) if Rails.env.development?

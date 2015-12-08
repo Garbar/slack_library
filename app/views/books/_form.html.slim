@@ -1,0 +1,14 @@
+= simple_form_for(@book, html: { class: 'form-horizontal' }, wrapper: :horizontal_form) do |f|
+	= f.error_notification
+	= f.input :title
+	= f.input :isbn
+	= f.input :published_date
+	= f.input :lang, :label => 'Language',
+	          :as => :select,
+	          :collection =>{'English' => 'eng', 'Russian' => 'ru'}
+	.form-group.string.optional.book_author_ids
+	    = f.label :author_ids, label: 'Authors', class: 'string optional col-sm-3 control-label'
+	    .col-sm-9
+	    	= f.hidden_field :author_ids, style: 'width:100%', data: {authors: Author.order(:name).map{|i|i.as_json only: [:id,:name]}}
+	= f.input :description, as: :text
+	= f.button :submit, "Add book", class: "btn btn-primary"

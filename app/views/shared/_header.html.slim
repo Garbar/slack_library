@@ -5,11 +5,12 @@ nav.navbar.navbar-inverse
     #navbar
       - if current_user
         ul.nav.navbar-nav.pull-right
-          li = current_user.name
+          li.user-name = current_user.name
+          li = link_to 'New book', new_book_path
           - if current_user.try(:admin?)
             li = link_to 'Users', books_path
           li = link_to 'Log Out', logout_path, method: :delete
       -else
         ul.nav.navbar-nav
           li
-            = link_to 'Slack', '/auth/slack'
+            = link_to 'Slack Library', '/auth/slack'

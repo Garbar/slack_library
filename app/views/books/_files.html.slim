@@ -1,0 +1,15 @@
+table.table
+  thead
+    tr
+      th Title
+      th Last Name
+      th Email
+  tbody
+    - @book.book_files.each do |b|
+      / = debug(b) if Rails.env.development?
+      -if b.id
+	      tr
+	        td = b.title
+	        td = link_to 'Download', b.file_url, class: 'btn btn-primary'
+	        td = b.format
+

@@ -1,5 +1,36 @@
-// import the CSS framework
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
 .clear-2 { display: block; clear: both; height: 0px; overflow: hidden; width: 100%; }
+.navbar-inverse .navbar-nav > li.user-name {
+  color: #9d9d9d;
+}
+.navbar-nav > li.user-name {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+}
+.nav > li.user-name {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+.clickable
+{
+    cursor: pointer;
+}
+
+.clickable .glyphicon
+{
+    background: rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px
+}
+
+.panel-heading span
+{
+    margin-top: -23px;
+    font-size: 15px;
+    margin-right: -9px;
+}
+a.clickable { color: inherit; }
+a.clickable:hover { text-decoration:none; }

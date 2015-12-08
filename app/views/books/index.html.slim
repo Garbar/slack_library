@@ -1,2 +1,43 @@
-h1 Books#index
-p Find me in app/views/books/index.html.slim
+.jumbotron
+    h3 Welcome!
+    .panel.panel-default.header
+      .panel-body
+            = simple_form_for(@isbn, url: get_book_books_path, method: :post,  wrapper: :inline_form, html: { class: 'form-inline' }) do |f|
+              .form-group
+                = f.input :isbn, label: false, placeholder: 'ISBN'
+              .form-group
+              = f.button :submit, "Add book", class: "btn btn-primary"
+
+
+.container
+  .row
+    -@books.each_with_index do |b, i|
+      .col-md-3.col-sm-6.col-xs-6.clearboth
+        / = debug(i) if Rails.env.development?
+        .thumbnail
+          a href="#{book_path(b)}"
+            -if b.cover?
+              img alt="" src="#{b.cover_url(:thumb)}" /
+            -else
+              img alt="" src="http://placehold.it/150x200" /
+          .caption
+            h5 =b.title
+            dl
+              -if b.isbn?
+                dt ISBN:
+                dd = b.isbn
+              dt Author(s):
+              dd = scope_authors(b.authors)
+              -if b.published_date?
+                dt Published date:
+                dd = b.published_date
+            -if b.lang?
+                dt Language:
+                dd = b.lang
+            a.btn.btn-primary.btn-primary__mod href="#{book_path(b)}"  Learn more
+      - if (i+1) % 4 == 0
+        .clear-2
+        br/
+  .row
+    .col-md-12
+        = paginate  @books

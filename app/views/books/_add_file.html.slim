@@ -1,0 +1,13 @@
+.panel.panel-info
+  .panel-heading
+    h3.panel-title
+      | Add files
+    span.pull-right.clickable
+      i.glyphicon.glyphicon-minus
+  .panel-body
+    = simple_form_for(@file, url: book_book_files_path(book_id: @book.id), method: :post, html: { class: 'form-horisontal' }) do |f|
+      = f.input :title
+      = f.input :file, as: :file
+      .form-group
+        = f.button :submit, "Add file", class: "btn btn-primary"
+
