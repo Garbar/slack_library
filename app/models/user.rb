@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  has_many :reviews
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
 

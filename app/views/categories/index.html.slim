@@ -1,0 +1,8 @@
+.well
+  h3 Category
+.container
+  ul.list-group
+    -@categories.each do |c|
+      li.list-group-item
+        span.badge #{c.books.count}
+        = link_to c.title, category_path(c)

@@ -1,0 +1,40 @@
+nav.navbar.navbar-inverse
+  .container-fluid
+    /! Brand and toggle get grouped for better mobile display
+    .navbar-header
+      button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'Slack Library', root_path, class: 'navbar-brand'
+    /! Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      - if current_user
+	      ul.nav.navbar-nav
+	        li = link_to 'New book', new_book_path
+	        - if current_user.try(:admin?)
+            	li = link_to 'Users', users_path
+	        li.dropdown
+	          a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+	            | Category
+	            span.caret
+	          ul.dropdown-menu
+	            li
+	              = link_to 'Category', categories_path
+	            li
+	              = link_to 'New category', new_category_path
+
+	      / form.navbar-form.navbar-left role="search"
+	      = simple_form_for(IsbnForm.new, url: get_book_books_path, method: :post,  html: { class: 'navbar-form navbar-left' }) do |f|
+	        .form-group
+	          = f.input :isbn, label: false, placeholder: 'ISBN'
+	        button.btn.btn-default type="submit"  Add book
+	      ul.nav.navbar-nav.navbar-right
+	        li
+	          = link_to 'Log Out', logout_path, method: :delete
+	  -else
+        ul.nav.navbar-nav
+          li
+            = link_to 'Slack', '/auth/slack'
+

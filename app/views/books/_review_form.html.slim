@@ -1,0 +1,10 @@
+.panel.panel-default.header
+  .panel-body
+    = form_for( @comment, url: comment_book_path, remote: true, method: 'post') do |f|
+      a name="reviews"
+      h5 Your review
+      .f-field
+        = f.text_area :text, class: 'form-control', cols: 20, rows: 10
+      hr
+      = f.submit 'Add', class: 'btn btn-primary'
+

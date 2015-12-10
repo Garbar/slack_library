@@ -13,3 +13,5 @@ jQuery ->
     createSearchChoice: (term) ->
       id: term,
       name: term + ' (new)'
+
+  $('.cat-select2').select2()

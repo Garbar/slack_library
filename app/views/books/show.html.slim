@@ -22,6 +22,8 @@
                     img alt="" src="http://placehold.it/250x200" /
               .col-md-8
                 dl.dl-horizontal
+                  dt Categories
+                  dd #{scope_cats(@book.categories)}
                   dt Authors
                   dd #{scope_authors(@book.authors)}
                   - if @book.isbn
@@ -40,3 +42,13 @@
 	        - if @book.book_files.size >1
 	          = render 'files'
         / = debug(@book.book_files.size) if Rails.env.development?
+        h4 Отзывы (#{@book.reviews.size})
+        #reviews
+          = render :partial => 'books/reviews', collection: @reviews, as: :comment
+        = paginate  @reviews
+        h4 Оставить отзыв
+        - if current_user
+        	= render "review_form"
+        - else
+        	a name="reviews"
+        	| #{link_to 'Login', '/auth/slack'}, чтобы оставить отзыв

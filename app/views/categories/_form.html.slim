@@ -1,0 +1,4 @@
+= simple_form_for(@category, html: { class: 'form-horizontal' }, wrapper: :horizontal_form) do |f|
+  = f.error_notification
+  = f.input :title
+  = f.button :submit, "Add category", class: "btn btn-primary"

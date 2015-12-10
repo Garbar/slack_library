@@ -1,0 +1,14 @@
+div itemprop="review" itemscope=true itemtype="http://schema.org/Review"
+  .panel.panel-default.header
+    .panel-body
+      a.pull-left href=""
+      h5 itemprop="author"
+        => comment.user.name
+        span.pull-left itemprop="datePublished"
+        |at  #{comment.created_at.strftime("%B %e, %Y")}
+      .clearfix
+      - if comment.text
+        .text-description itemprop="reviewBody"
+            |#{comment.text.html_safe}
+
+

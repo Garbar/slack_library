@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :comment]
   def index
     # @books = Book.order(:title).includes(:authors).page(params[:page]).per(12)
     @books = Book.order(created_at: :desc).includes(:authors).page(params[:page]).per(12)
@@ -8,6 +8,14 @@ class BooksController < ApplicationController
 
   def show
     @file = @book.book_files.build
+    @comment = Review.new
+    @reviews = Review.where(book_id: @book.id).includes(:user).order("created_at DESC")
+    .page(params[:page]).per(6)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json
+      format.js
+    end
   end
 
   def new
@@ -64,7 +72,21 @@ class BooksController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def comment
+    @comment = current_user.reviews.build(comment_params)
+    @comment.book_id = @book.id
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to :back }
+        format.json
+        format.js
+      else
+        format.html { redirect_to :back }
+        format.json
+        format.js
+      end
+    end
+  end
   private
 
   def set_book
@@ -75,6 +97,13 @@ class BooksController < ApplicationController
     params.require(:isbn_form).permit(:isbn)
   end
   def book_params
-    params.require(:book).permit(:title, :isbn, :published_date, :lang, :description, :author_ids)
+    params.require(:book).permit(:title, :isbn, :published_date, :lang, :description, :author_ids,
+                                 :category_ids => []
+                                 )
   end
+
+  def comment_params
+    params.require(:review).permit(:text)
+  end
+
 end
