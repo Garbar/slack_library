@@ -32,9 +32,9 @@
                   - if @book.lang
                     dt Language
                     dd = @book.lang
-                  - if @book.published_date
+                  - if @book.date_published
                     dt Last update
-                    dd = @book.published_date
+                    dd = @book.date_published.strftime("%e %B, %Y")
             - if @book.description
             	p.lead = @book.description.html_safe
         - if current_user

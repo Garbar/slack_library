@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
 //= require select2
 //= require select2_locale_ru
 //= require jquery.validate

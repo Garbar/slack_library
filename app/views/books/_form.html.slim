@@ -2,6 +2,7 @@
 	= f.error_notification
 	= f.input :title
 	= f.input :isbn
+	= f.input :date_published, as: :string, input_html:  { class: "datepicker" }
 	= f.association :categories, collection: Category.order(:title), prompt: "Choose a Category",
       input_html:  { class: "cat-select2" }
 	= f.input :published_date

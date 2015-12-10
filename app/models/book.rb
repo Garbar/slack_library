@@ -51,10 +51,10 @@ class Book < ActiveRecord::Base
             self.description=@goodreadbook["description"]
           end
 
-          if self.published_date.present? == false
-            published_date = "#{@goodreadbook['publication_day']}-#{@goodreadbook['publication_month']}-#{@goodreadbook['publication_year']}"
+          if self.date_published.present? == false
+            date_published = "#{@goodreadbook['publication_month']}/#{@goodreadbook['publication_day']}/#{@goodreadbook['publication_year']}"
             # self.published_date=@goodreadbook["work"]["original_publication_year"]
-            self.published_date=published_date
+            self.date_published=date_published
           end
 
           # :picture is user uploaded img, :goodreadscover is the picture from goodreads
