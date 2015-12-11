@@ -3,7 +3,7 @@ class Book < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_many :book_files
   has_many :reviews
-  before_save :check_book
+  # before_save :check_book
   mount_uploader :cover, CoverUploader
 
   def author_ids

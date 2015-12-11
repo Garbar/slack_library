@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :comment]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :comment, :get_google_books, :get_goodreads]
   def index
     # @books = Book.order(:title).includes(:authors).page(params[:page]).per(12)
     @books = Book.order(created_at: :desc).includes(:authors).page(params[:page]).per(12)
@@ -50,6 +50,24 @@ class BooksController < ApplicationController
       else
         format.html { redirect_to root_path, notice: 'Parser did not work.' }
       end
+    end
+  end
+
+  def get_google_books
+    book = ParserService.new("google_books", @book)
+    book.check_book
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json
+    end
+  end
+
+  def get_goodreads
+    book = ParserService.new("goodreads", @book)
+    book.check_book
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json
     end
   end
 

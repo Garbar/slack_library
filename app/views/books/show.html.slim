@@ -6,6 +6,12 @@
 	      	a.btn href="#{edit_book_path(@book)}"
 	          i.icon-edit
 	          strong Edit
+	        = link_to get_google_books_book_path(@book), :class => 'btn', method: :post  do
+	          i.icon-trash
+	          strong Get data from Google
+	        = link_to get_goodreads_book_path(@book), :class => 'btn', method: :post  do
+	          i.icon-trash
+	          strong Get data from Goodreads
 	        = link_to book_path(@book), :class => 'btn', method: :delete, data: { confirm: 'Are you sure?' }  do
 	          i.icon-trash
 	          strong Delete

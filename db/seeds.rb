@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# ActiveRecord::Base.connection.execute("TRUNCATE #{books}")
 # Book.delete_all
 # # Book.create!(isbn: '9781941222126')
 # require 'googlebooks' # unless you're using Bundler
@@ -23,4 +24,4 @@
 #   end
 # end
 
-category = Category.create([{ title: 'Rails' }, { title: 'Ruby' }])
+# category = Category.create([{ title: 'Rails' }, { title: 'Ruby' }])
