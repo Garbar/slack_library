@@ -6,7 +6,11 @@ class Book < ActiveRecord::Base
   mount_uploader :cover, CoverUploader
 
   include PgSearch
-  multisearchable against: [:title, :description, :isbn, :date_published, :author_names]
+  multisearchable against: [:title, :description, :isbn, :date_published, :author_names],
+  :using => {
+    :tsearch => {:prefix => true}
+  }
+
 
   def author_names
     names = []
@@ -22,6 +26,7 @@ class Book < ActiveRecord::Base
   def author_ids=(ids)
     super ids.split("%%$$%%").map{|id| id.is_a?(Integer) || id.gsub(/\d+/, '') == "" ? id : Author.create(name: id).id }
   end
-
-
+  def self.rebuild_pg_search_documents
+    find_each { |record| record.update_pg_search_document }
+  end
 end
