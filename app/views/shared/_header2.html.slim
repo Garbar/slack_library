@@ -26,10 +26,12 @@ nav.navbar.navbar-inverse
 	              = link_to 'New category', new_category_path
 
 	      / form.navbar-form.navbar-left role="search"
-	      = simple_form_for(IsbnForm.new, url: get_book_books_path, method: :post,  html: { class: 'navbar-form navbar-left' }) do |f|
+          = form_tag results_path, method: :get, html: { class: 'navbar-form navbar-left' }, role: 'search' do
+	      # = simple_form_for(IsbnForm.new, url: get_book_books_path, method: :post,  html: { class: 'navbar-form navbar-left' }) do |f|
 	        .form-group
-	          = f.input :isbn, label: false, placeholder: 'ISBN'
-	        button.btn.btn-default type="submit"  Add book
+	          / = f.input :isbn, label: false, placeholder: 'ISBN'
+              = text_field_tag :query, params[:query]
+	        button.btn.btn-default type="submit"  Search
 	      ul.nav.navbar-nav.navbar-right
 	        li
 	          = link_to 'Log Out', logout_path, method: :delete

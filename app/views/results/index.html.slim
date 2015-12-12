@@ -1,0 +1,9 @@
+h3 Результаты поиска по запросу #{params[:query]}
+- @search_results.each do |pg_search_document|
+  / = debug(pg_search_document) if Rails.env.development?
+  -if pg_search_document.searchable.title
+    h4 = link_to pg_search_document.searchable.title, pg_search_document.searchable
+  -if pg_search_document.content
+    div = pg_search_document.content.html_safe
+  hr
+

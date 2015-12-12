@@ -1,0 +1,9 @@
+.well
+  = form_tag results_path, method: :get, role: 'search' do
+    .row
+      .col-xs-12
+        .input-group.input-group-lg
+          = text_field_tag :query, params[:query], class: 'form-control'
+          .input-group-btn
+            button.btn type="submit"  Search
+
