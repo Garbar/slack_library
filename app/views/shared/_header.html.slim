@@ -15,6 +15,7 @@ nav.navbar.navbar-inverse
 	        li = link_to 'New book', new_book_path
 	        - if current_user.try(:admin?)
             	li = link_to 'Users', users_path
+            li = link_to 'Authors', authors_path
 	        li.dropdown
 	          a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
 	            | Category

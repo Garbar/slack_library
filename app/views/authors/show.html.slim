@@ -1,2 +1,17 @@
-h1 Authors#show
-p Find me in app/views/authors/show.html.slim
+#content
+  .container
+    .row
+      #blog-post.col-md-12
+        / - if current_user
+        /   a.btn href="#{edit_category_path(@category)}"
+        /     i.icon-edit
+        /     strong Edit
+        /   = link_to category_path(@category), :class => 'btn', method: :delete, data: { confirm: 'Are you sure?' }  do
+        /     i.icon-trash
+        /     strong Delete
+        .panel.panel-info
+          .panel-heading
+            h3.panel-title = @author.name
+          .panel-body
+            - @author.books.each do |post|
+              p = link_to post.title, post

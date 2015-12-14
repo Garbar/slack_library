@@ -1,2 +1,8 @@
-h1 Authors#index
-p Find me in app/views/authors/index.html.slim
+.well
+  h3 Authors
+.container
+  ul.list-group
+    -@authors.each do |c|
+      li.list-group-item
+        span.badge #{c.books.count}
+        = link_to c.name, author_path(c)
