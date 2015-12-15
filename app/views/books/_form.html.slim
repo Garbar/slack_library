@@ -2,6 +2,19 @@
 	= f.error_notification
 	= f.input :title
 	= f.input :isbn
+	- if @book.cover?
+		.form-group
+			.col-sm-3.control-label
+				= image_tag(@book.cover_url(:preview))
+			= f.label :remove_cover, label: 'Delete Cover', class: 'string optional col-sm-3 control-label'
+			.col-sm-6
+				/ = f.check_box :remove_cover
+				= f.input_field :remove_cover, as: :boolean
+	.form-group.string.optional.book_cover
+		= f.label :cover, label: 'Cover', class: 'string optional col-sm-3 control-label'
+		.col-sm-9
+			= f.file_field :cover
+			= f.hidden_field :cover_cache
 	= f.input :date_published, as: :string, input_html:  { class: "datepicker" }
 	= f.association :categories, collection: Category.order(:title), prompt: "Choose a Category",
       input_html:  { class: "cat-select2" }
