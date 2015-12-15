@@ -68,3 +68,4 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'bootstrap-datepicker-rails'
 gem 'pg_search'
 gem "administrate", "~> 0.1.2"
+gem 'database_cleaner'

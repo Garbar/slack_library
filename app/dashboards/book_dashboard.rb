@@ -22,6 +22,7 @@ class BookDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     lang: Field::String,
     published_date: Field::String,
+    author_names: Field::String,
     count_page: Field::Number,
     date_published: Field::DateTime,
   }
@@ -32,10 +33,13 @@ class BookDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :authors,
-    :categories,
-    :book_files,
-    :reviews,
+    :id,
+    :title,
+    :author_names,
+    # :authors,
+    # :categories,
+    # :book_files,
+    # :reviews,
   ]
 
   # SHOW_PAGE_ATTRIBUTES

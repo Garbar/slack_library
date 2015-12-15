@@ -1,9 +1,11 @@
-ActiveRecord::Base.connection.execute("TRUNCATE #{:pg_search_documents}")
-ActiveRecord::Base.connection.execute("TRUNCATE #{:authors_books}")
-ActiveRecord::Base.connection.execute("TRUNCATE #{:books_categories}")
-ActiveRecord::Base.connection.execute("TRUNCATE #{:books}")
-ActiveRecord::Base.connection.execute("TRUNCATE #{:authors}")
-ActiveRecord::Base.connection.execute("TRUNCATE #{:reviews}")
+# ActiveRecord::Base.connection.execute("TRUNCATE #{:pg_search_documents}")
+# ActiveRecord::Base.connection.execute("TRUNCATE #{:authors_books}")
+# ActiveRecord::Base.connection.execute("TRUNCATE #{:books_categories}")
+# ActiveRecord::Base.connection.execute("TRUNCATE #{:books}")
+# ActiveRecord::Base.connection.execute("TRUNCATE #{:authors}")
+# ActiveRecord::Base.connection.execute("TRUNCATE #{:reviews}")
+require 'database_cleaner'
+DatabaseCleaner.clean_with(:truncation, :except => %w[users schema_migrations])
 
 require 'csv'
 
