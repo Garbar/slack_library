@@ -6,11 +6,7 @@ class Book < ActiveRecord::Base
   mount_uploader :cover, CoverUploader
 
   include PgSearch
-  multisearchable against: [:title, :description, :isbn, :date_published, :author_names],
-  :using => {
-    :tsearch => {:prefix => true}
-  }
-
+  multisearchable against: [:title, :description, :isbn, :date_published, :author_names]
 
   def author_names
     names = []
