@@ -106,7 +106,7 @@ class BooksController < ApplicationController
     params.require(:isbn_form).permit(:isbn)
   end
   def book_params
-    params.require(:book).permit(:title, :isbn, :date_published, :lang, :description, :author_ids, :cover, :cover_cache, :remove_cover,
+    params.require(:book).permit(:title, :isbn, :date_published, :lang, :description, :author_ids, :cover, :cover_cache, :remove_cover, :count_page,
                                  :category_ids => []
                                  )
   end
