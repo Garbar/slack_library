@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
     root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
   end
-
+  get 'tags/:tag', to: 'books#index', as: :tag
   resources :books do
     resources :book_files, only: [:create, :update, :destroy]
     post 'new/isbn', to: 'books#get_book', as: 'get_book', on: :collection

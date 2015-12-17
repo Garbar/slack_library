@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ActsAsTaggableOn::TagsHelper
   def scope_authors(tags)
     links = []
     if tags.count > 0

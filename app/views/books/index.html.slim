@@ -10,19 +10,23 @@
             -else
               img alt="" src="http://placehold.it/150x200" /
           .caption
-            h5 =b.title
+            h5 =link_to b.title, book_path(b)
             dl
-              -if b.isbn?
-                dt ISBN:
-                dd = b.isbn
-              dt Author(s):
-              dd = scope_authors(b.authors)
-              -if b.published_date?
-                dt Published date:
-                dd = b.published_date
-            -if b.lang?
-                dt Language:
-                dd = b.lang
+            	dt Category:
+            	dd = scope_cats(b.categories)
+            	dt Tags:
+            	dd = raw b.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
+            	-if b.isbn?
+	                dt ISBN:
+	                dd = b.isbn
+            	dt Author(s):
+            	dd = scope_authors(b.authors)
+            	-if b.published_date?
+                	dt Published date:
+                	dd = b.published_date
+            	-if b.lang?
+                	dt Language:
+                	dd = b.lang
             a.btn.btn-primary.btn-primary__mod href="#{book_path(b)}"  Learn more
       - if (i+1) % 4 == 0
         .clear-2

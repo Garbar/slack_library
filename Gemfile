@@ -40,7 +40,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
 end
@@ -69,3 +68,4 @@ gem 'bootstrap-datepicker-rails'
 gem 'pg_search'
 gem "administrate", "~> 0.1.2"
 gem 'database_cleaner'
+gem 'acts-as-taggable-on', '~> 3.4'

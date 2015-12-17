@@ -4,6 +4,7 @@ class Book < ActiveRecord::Base
   has_many :book_files
   has_many :reviews
   mount_uploader :cover, CoverUploader
+  acts_as_taggable
 
   include PgSearch
   multisearchable against: [:title, :description, :isbn, :date_published, :author_names]

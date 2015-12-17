@@ -30,6 +30,9 @@
                 dl.dl-horizontal
                   dt Categories
                   dd #{scope_cats(@book.categories)}
+                  dt Tags
+                  / dd #{@book.tag_list}
+                  dd = raw @book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
                   dt Authors
                   dd #{scope_authors(@book.authors)}
                   - if @book.isbn

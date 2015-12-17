@@ -1,9 +1,13 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :comment, :get_book_from]
   def index
+    @books = Book.order(created_at: :desc).includes(:authors, :categories).page(params[:page]).per(12)
+    if params[:tag]
+      @books = @books.tagged_with(params[:tag])
+    end
     # @books = Book.order(:title).includes(:authors).page(params[:page]).per(12)
-    @books = Book.order(created_at: :desc).includes(:authors).page(params[:page]).per(12)
-    @isbn = IsbnForm.new
+    # @books = Book.order(created_at: :desc).includes(:authors).page(params[:page]).per(12)
+    # @isbn = IsbnForm.new
   end
 
   def show
@@ -96,6 +100,8 @@ class BooksController < ApplicationController
       end
     end
   end
+
+
   private
 
   def set_book
@@ -107,7 +113,8 @@ class BooksController < ApplicationController
   end
   def book_params
     params.require(:book).permit(:title, :isbn, :date_published, :lang, :description, :author_ids, :cover, :cover_cache, :remove_cover, :count_page,
-                                 :category_ids => []
+                                 :category_ids => [],
+                                 :tag_list => []
                                  )
   end
 

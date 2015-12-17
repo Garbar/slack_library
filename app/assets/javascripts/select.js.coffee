@@ -15,3 +15,7 @@ jQuery ->
       name: term + ' (new)'
 
   $('.cat-select2').select2()
+  # $('#book_tag_list').select2({tags:[]})
+  $( ".tags" ).select2
+    theme: "bootstrap",
+    tokenSeparators: [',']
