@@ -26,5 +26,8 @@
 	= f.input :description, as: :text
 	/ = f.input :tag_list
 	/ = f.input :tag_list, input_html: { class: 'tags', multiple: "multiple" }, collection: @book.tag_list
-	= f.input :tag_list, input_html: { class: 'tags', multiple: "multiple" }, collection: ActsAsTaggableOn::Tag.most_used(30), value_method: :name
+	/ = f.input :tag_list, input_html: { class: 'tags', multiple: "multiple" }, collection: ActsAsTaggableOn::Tag.most_used(30), value_method: :name
+	= f.input :tag_list,
+      label: "Tags",
+      input_html: { data: {placeholder: "Enter tags", saved: f.object.tags.map{|t| {id: t.name, name: t.name}}.to_json, url: autocomplete_tags_path }, class: 'tagselect' }
 	= f.button :submit, "Add book", class: "btn btn-primary"

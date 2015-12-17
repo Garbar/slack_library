@@ -21,7 +21,14 @@ class BooksController < ApplicationController
       format.js
     end
   end
-
+  def autocomplete_tags
+    @tags = ActsAsTaggableOn::Tag.
+      where("name LIKE ?", "#{params[:q]}%").
+      order(:name)
+    respond_to do |format|
+      format.json { render :json => @tags.collect{|t| {:id => t.name, :name => t.name }}}
+    end
+  end
   def new
     @book =Book.new
   end
@@ -112,7 +119,7 @@ class BooksController < ApplicationController
     params.require(:isbn_form).permit(:isbn)
   end
   def book_params
-    params.require(:book).permit(:title, :isbn, :date_published, :lang, :description, :author_ids, :cover, :cover_cache, :remove_cover, :count_page,
+    params.require(:book).permit(:title, :isbn, :date_published, :lang, :description, :author_ids, :cover, :cover_cache, :remove_cover, :count_page, :tag_list,
                                  :category_ids => [],
                                  :tag_list => []
                                  )
