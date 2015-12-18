@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def auth_failure
+    flash[:alert] = "Authentication with #{params[:strategy].capitalize} was canceled. Please try again."
     redirect_to root_path
   end
 end

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe BooksController, type: :controller do
   let!(:book) { create(:book) }
   describe "GET #index" do
