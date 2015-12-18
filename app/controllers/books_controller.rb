@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :comment, :get_book_from]
   def index
-    @books = Book.order(created_at: :desc).includes(:authors, :categories).page(params[:page]).per(12)
+    @books = Book.order(created_at: :desc).includes(:authors, :categories, :tags).page(params[:page]).per(12)
     if params[:tag]
       @books = @books.tagged_with(params[:tag])
     end

@@ -42,6 +42,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', require: false
 end
 
 gem 'bootstrap-sass'
