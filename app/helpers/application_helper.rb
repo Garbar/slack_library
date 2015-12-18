@@ -5,6 +5,7 @@ module ApplicationHelper
     tags.each do |t|
       links += [link_to(t.name, author_path(t))]
     end
+    links.join(' &nbsp;&bull;&nbsp; ').html_safe
   end
 
   def scope_cats(tags)

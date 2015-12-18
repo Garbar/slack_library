@@ -31,10 +31,10 @@
                   dt Categories
                   dd #{scope_cats(@book.categories)}
                   dt Tags
-                  / dd #{@book.tag_list}
                   dd = raw @book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
                   dt Authors
                   dd #{scope_authors(@book.authors)}
+                  / dd = raw @book.authors.map { |t| link_to t.name, author_path(t) }.join(', ')
                   - if @book.isbn
                     dt ISBN
                     dd = @book.isbn
