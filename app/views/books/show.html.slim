@@ -31,7 +31,7 @@
                   dt Categories
                   dd #{scope_cats(@book.categories)}
                   dt Tags
-                  dd = raw @book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
+                  dd = sanitize @book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
                   dt Authors
                   dd #{scope_authors(@book.authors)}
                   / dd = raw @book.authors.map { |t| link_to t.name, author_path(t) }.join(', ')
@@ -45,7 +45,7 @@
                     dt Last update
                     dd = @book.date_published.strftime("%e %B, %Y")
             - if @book.description
-            	p.lead = @book.description.html_safe
+            	p.lead = sanitize @book.description
         - if current_user
 	        = render 'add_file'
 	        - if @book.book_files.size >1

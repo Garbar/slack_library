@@ -32,5 +32,8 @@ module SlackLibrary
         :request_specs => true
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
+
+    config.action_view.sanitized_allowed_tags = %w(strong em a i)
+    config.action_view.sanitized_allowed_attributes = %w(href title)
   end
 end
