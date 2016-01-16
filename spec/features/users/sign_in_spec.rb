@@ -14,6 +14,14 @@ feature 'Sign in', :omniauth do
     expect(page).to have_content("Slack")
   end
 
+  scenario 'user is on book page after signin from book page' do
+    book = create(:book)
+    visit book_path(book)
+    auth_mock
+    click_on 'Slack'
+    expect(current_path).to eq book_path(book)
+  end
+
   # Scenario: User cannot sign in with invalid account
   #   Given I have no account
   #   And I am not signed in
@@ -27,9 +35,6 @@ feature 'Sign in', :omniauth do
     visit root_path
     expect(page).to have_content("Slack")
     click_link "Slack"
-    save_and_open_page
     expect(page).to have_content('Authentication with Slack was canceled. Please try again.')
-
   end
-
 end
