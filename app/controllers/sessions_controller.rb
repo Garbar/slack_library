@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     rescue
       flash[:warning] = "There was an error while trying to authenticate you..."
     end
-    redirect_to root_path
+    redirect_to request.env['omniauth.origin'] || root_path
   end
 
   def destroy
@@ -21,7 +21,8 @@ class SessionsController < ApplicationController
   end
 
   def auth_failure
-    flash[:alert] = "Authentication with #{params[:strategy].capitalize} was canceled. Please try again."
+    flash[:alert] = "Authentication with #{params[:strategy].capitalize} "\
+                    'was canceled. Please try again.'
     redirect_to root_path
   end
 end
