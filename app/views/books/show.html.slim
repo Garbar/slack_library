@@ -60,4 +60,4 @@
         	= render "review_form"
         - else
         	a name="reviews"
-        	| #{link_to 'Login', '/auth/slack'}, чтобы оставить отзыв
+        	| #{auth_slack_link('Login')}, чтобы оставить отзыв

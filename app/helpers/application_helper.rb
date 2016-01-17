@@ -15,4 +15,12 @@ module ApplicationHelper
     end
     links.join(' &nbsp;&bull;&nbsp; ').html_safe
   end
+
+  def auth_slack_link(title = 'Slack')
+    if request.env['PATH_INFO'] == '/'
+      link_to title, '/auth/slack'
+    else
+      link_to title, "/auth/slack?origin=#{request.env['PATH_INFO']}"
+    end
+  end
 end
