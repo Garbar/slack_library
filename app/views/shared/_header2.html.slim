@@ -38,4 +38,4 @@ nav.navbar.navbar-inverse
 	  -else
         ul.nav.navbar-nav
           li
-            = link_to 'Slack', "/auth/slack?origin=#{request.env['PATH_INFO']}"
+            = auth_slack_link
